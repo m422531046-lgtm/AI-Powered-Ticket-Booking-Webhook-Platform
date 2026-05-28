@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="نظام حجز تذاكر احترافي مع Webhook وTelegram Bot وQR Code وعداد مقاعد." />
+  <title>Tickora Bot | Smart Ticket Booking System</title>
+  <link rel="stylesheet" href="pot.css">
+
+</head>
+
+<body>
+  <div class="loader" id="loader">
+    <div>
+      <div class="loader-ring"></div>
+      <strong>جاري تجهيز نظام الحجز...</strong>
+    </div>
+  </div>
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="header" id="header">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <span class="brand-mark">🎟</span>
+        <span>
+          <strong>Tickora Bot</strong>
+          <small>Ticket Booking • Webhook • Automation</small>
+        </span>
+      </a>
+
+      <nav class="links" id="links">
+        <a href="#home" class="nav-link active">الرئيسية</a>
+        <a href="#features" class="nav-link">المميزات</a>
+        <a href="#tickets" class="nav-link">التذاكر</a>
+        <a href="#booking" class="nav-link">الحجز</a>
+        <a href="#contact" class="nav-link">التواصل</a>
+      </nav>
+
+      <a href="#booking" class="btn btn-primary">احجز الآن</a>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="badge">بوت حجز ذكي + Webhook + إشعارات فورية</span>
+          <h1>نظام حجز تذاكر <span class="gradient-text">يشتغل لحالك</span></h1>
+          <div class="typing-line">النظام يرسل الطلب إلى <span id="typingText"></span></div>
+          <p>
+            واجهة حجز احترافية للفعاليات والرحلات والخدمات. العميل يختار نوع التذكرة وعددها ويدخل بياناته، والنظام يرسل الطلب مباشرة عبر Webhook إلى تليجرام أو Google Sheets أو أي Backend.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#booking" class="btn btn-primary">جرّب الحجز الآن</a>
+            <a href="#features" class="btn btn-outline">شوف المميزات</a>
+          </div>
+
+          <div class="chips">
+            <span class="chip">⚡ حجز سريع</span>
+            <span class="chip">🤖 Bot Ready</span>
+            <span class="chip">🔗 Webhook Integration</span>
+          </div>
+        </div>
+
+        <div class="booking-card reveal delay-2" id="tiltCard">
+          <div class="floating-card">
+            <strong>Live</strong>
+            <span>يرسل الطلب فورياً بعد الحجز</span>
+          </div>
+          <div class="booking-screen">
+            <div class="event-preview">
+              <h3>Weekend VIP Event</h3>
+              <p>نظام حجز مخصص للفعاليات مع إشعارات تلقائية وتفاصيل كاملة للطلب.</p>
+              <div class="mini-steps">
+                <div class="mini-step"><span>1</span>اختيار نوع التذكرة</div>
+                <div class="mini-step"><span>2</span>إرسال الطلب للويب هوك</div>
+                <div class="mini-step"><span>3</span>وصول إشعار للبوت</div>
+              </div>
+            </div>
+            <a href="#booking" class="btn btn-green">Start Booking</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">ليش هذا المشروع قوي؟</span>
+          <h2>مش صفحة عادية — هذا نظام حجز فيه Automation</h2>
+          <p>واجهة احترافية وتجربة مستخدم سهلة مع إرسال مباشر للطلبات عبر Webhook.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="feature-card reveal delay-1"><div class="icon">🎫</div><h3>اختيار التذاكر</h3><p>العميل يختار Regular أو VIP أو Premium مع حساب السعر تلقائياً.</p></article>
+          <article class="feature-card reveal delay-2"><div class="icon">🔗</div><h3>Webhook جاهز</h3><p>إرسال بيانات الحجز لأي رابط Webhook مثل Google Sheets أو Telegram أو Backend.</p></article>
+          <article class="feature-card reveal delay-3"><div class="icon">🤖</div><h3>Bot Message</h3><p>رسالة منظمة تصل للبوت فيها الاسم، الهاتف، التذكرة، العدد، السعر، والملاحظات.</p></article>
+          <article class="feature-card reveal delay-1"><div class="icon">📱</div><h3>Responsive</h3><p>التصميم يشتغل بشكل ممتاز على الموبايل والتابلت والكمبيوتر.</p></article>
+          <article class="feature-card reveal delay-2"><div class="icon">✨</div><h3>Premium UI</h3><p>ستايل فخم، Glassmorphism، Hover، Scroll Reveal، وتأثيرات حديثة.</p></article>
+          <article class="feature-card reveal delay-3"><div class="icon">✅</div><h3>تأكيد الحجز</h3><p>رسالة نجاح تظهر للعميل بعد الإرسال مع رقم حجز تلقائي وQR Code.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tickets">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">أنواع التذاكر</span>
+          <h2>باقات تذاكر جاهزة للبيع</h2>
+          <p>تقدر تغير الأسعار والأسماء حسب المشروع المطلوب.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="ticket-card reveal delay-1">
+            <div class="icon">🎟</div>
+            <h3>Regular Ticket</h3>
+            <p>دخول عادي للفعالية أو الرحلة.</p>
+            <div class="ticket-price">$25 <small>/ ticket</small></div>
+            <ul class="ticket-list"><li>تأكيد فوري</li><li>إشعار للبوت</li><li>حجز باسم العميل</li></ul>
+            <a href="#booking" class="btn btn-outline">اختيار</a>
+          </article>
+
+          <article class="ticket-card reveal delay-2">
+            <div class="icon">👑</div>
+            <h3>VIP Ticket</h3>
+            <p>تذكرة مميزة للصفوف أو الخدمات الأفضل.</p>
+            <div class="ticket-price">$45 <small>/ ticket</small></div>
+            <ul class="ticket-list"><li>مقاعد أفضل</li><li>أولوية دخول</li><li>دعم أسرع</li></ul>
+            <a href="#booking" class="btn btn-primary">الأكثر طلباً</a>
+          </article>
+
+          <article class="ticket-card reveal delay-3">
+            <div class="icon">💎</div>
+            <h3>Premium Ticket</h3>
+            <p>تجربة كاملة للعميل مع مزايا إضافية.</p>
+            <div class="ticket-price">$70 <small>/ ticket</small></div>
+            <ul class="ticket-list"><li>VIP Access</li><li>خدمة مميزة</li><li>تأكيد خاص</li></ul>
+            <a href="#booking" class="btn btn-outline">اختيار</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container stats">
+        <div class="stat-card reveal"><strong data-count="24">0</strong><span>ساعة استقبال</span></div>
+        <div class="stat-card reveal delay-1"><strong data-count="3">0</strong><span>أنواع تذاكر</span></div>
+        <div class="stat-card reveal delay-2"><strong data-count="100">0</strong><span>% Responsive</span></div>
+        <div class="stat-card reveal delay-3"><strong data-count="1">0</strong><span>Webhook جاهز</span></div>
+      </div>
+    </section>
+
+    <section class="section booking-section" id="booking">
+      <div class="container booking-grid">
+        <div class="reveal">
+          <div class="section-head left">
+            <span class="eyebrow">نظام الحجز</span>
+            <h2>احجز تذكرتك والنظام يرسل الطلب تلقائياً</h2>
+            <p>هنا القوة: الفورم يحسب السعر ويجهز رسالة منظمة ويرسلها للويب هوك.</p>
+          </div>
+
+          <div class="glass-card contact-card"><h3>📌 الفكرة</h3><p>Frontend يرسل POST Request إلى Webhook URL.</p></div>
+          <div class="glass-card contact-card"><h3>🤖 البوت</h3><p>الويب هوك يستقبل البيانات ويرسلها كتليجرام Message أو يحفظها في Sheet.</p></div>
+          <div class="webhook-box">
+            <strong>ضع رابط الويب هوك هنا داخل JavaScript:</strong>
+            <code>const WEBHOOK_URL = 'PASTE_YOUR_WEBHOOK_URL_HERE';</code>
+          </div>
+        </div>
+
+        <div class="form-box reveal delay-2">
+          <h3>Book Your Ticket</h3>
+          <p>املأ بيانات الحجز وسيتم إرسال الطلب مباشرة.</p>
+
+          <form id="bookingForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">الاسم الكامل</label>
+                <input id="name" name="name" type="text" placeholder="اكتب اسمك" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">رقم الهاتف</label>
+                <input id="phone" name="phone" type="tel" dir="ltr" placeholder="0591234567" required />
+              </div>
+
+              <div class="field">
+                <label for="ticketType">نوع التذكرة</label>
+                <select id="ticketType" name="ticketType" required>
+                  <option value="Regular" data-price="25">Regular Ticket - $25</option>
+                  <option value="VIP" data-price="45">VIP Ticket - $45</option>
+                  <option value="Premium" data-price="70">Premium Ticket - $70</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="quantity">عدد التذاكر</label>
+                <input id="quantity" name="quantity" type="number" min="1" max="10" value="1" required />
+              </div>
+
+              <div class="field">
+                <label for="date">تاريخ الحجز</label>
+                <input id="date" name="date" type="date" required />
+              </div>
+
+              <div class="field">
+                <label for="payment">طريقة الدفع</label>
+                <select id="payment" name="payment" required>
+                  <option>Cash</option>
+                  <option>Card</option>
+                  <option>Bank Transfer</option>
+                  <option>PayPal</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="notes">ملاحظات</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="أي ملاحظات إضافية"></textarea>
+              </div>
+            </div>
+
+            <div class="live-seats-box">
+              <span>المقاعد المتبقية</span>
+              <strong><span id="availableSeats">120</span> مقعد</strong>
+            </div>
+
+            <div class="booking-summary">
+              <div class="summary-row"><span>نوع التذكرة</span><strong id="summaryType">Regular</strong></div>
+              <div class="summary-row"><span>سعر التذكرة</span><strong id="summaryPrice">$25</strong></div>
+              <div class="summary-row"><span>عدد التذاكر</span><strong id="summaryQty">1</strong></div>
+              <div class="summary-row total"><span>الإجمالي</span><strong id="summaryTotal">$25</strong></div>
+            </div>
+
+            <button class="btn btn-primary submit-btn" type="submit" id="submitBtn">إرسال الحجز</button>
+            <div id="formMessage" class="form-message"></div>
+            <div id="errorMessage" class="error-message"></div>
+          </form>
+
+          <div id="successPanel" class="success-panel">
+            <h3>تم تأكيد الحجز بنجاح ✅</h3>
+            <p>احتفظ بصورة الـ QR عند الدخول.</p>
+            <img id="qrImage" src="" alt="Booking QR Code" />
+            <strong id="successBookingId"></strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">جاهز للتسليم</span>
+          <h2>المشروع قابل للربط مع أي Webhook</h2>
+          <p>يمكن ربطه بتليجرام، Google Sheets، Make، Zapier، أو Backend خاص.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="testimonial-card reveal delay-1"><div class="icon">📊</div><h3>Google Sheets</h3><p>كل حجز ينحفظ كسطر داخل جدول منظم.</p></article>
+          <article class="testimonial-card reveal delay-2"><div class="icon">📲</div><h3>Telegram Bot</h3><p>كل حجز يوصل كرسالة فورية للمالك.</p></article>
+          <article class="testimonial-card reveal delay-3"><div class="icon">⚙️</div><h3>Backend Ready</h3><p>الكود جاهز للتطوير لاحقاً وربطه بقاعدة بيانات.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Tickora Bot — Smart Ticket Booking System with Webhook Integration.</p>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop">↑</button>
+  <div class="toast" id="toast">تم تحديث تفاصيل الحجز</div>
+
+<script src="script.js"></script>
+</body>
+</html>
